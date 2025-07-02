@@ -38,10 +38,12 @@
 
   <script src="script.js"></script>
   <script>
-	 document.getElementById('btn-cerrar').style.display = 'none';
+      window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('btn-cerrar').style.display = 'none';
+      });
       function mostrarPopup() {
           // Mostrar el popup y overlay
-          document.getElementById('popup').style.display = 'block';
+          document.getElementById('popup').style.display = 'block'; 
           document.getElementById('overlay').style.display = 'block';
           document.getElementById('btn-cerrar').style.display = 'block';
 
@@ -51,6 +53,10 @@
       function cerrarPopup() {
           document.getElementById('popup').style.display = 'none';
           document.getElementById('overlay').style.display = 'none';
+          document.getElementById('btn-cerrar').style.display = 'none';
+
+          // Limpiar el contenedor para evitar duplicados
+          document.getElementById('pp-button').innerHTML = '';
       }
 
       function ejecutarCajitaPagos() {
