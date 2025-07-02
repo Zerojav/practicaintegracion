@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Catálogo de Productos</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.payphonetodoesposible.com/box/v1.1/payphone-payment-box.css"> 
+  <script type="module" src="https://cdn.payphonetodoesposible.com/box/v1.1/payphone-payment-box.js"></script> 
 </head>
 <body>
   <header>
@@ -15,8 +17,48 @@
     <div id="product-list" class="product-container"></div>
     <h2>🛒 Carrito</h2>
     <ul id="cart" class="cart-list"></ul>
+    <button onclick="mostrarPopup()">Realizar Pago</button>
+    <div id="popup">
+      <button id="btn-cerrar" onclick="cerrarPopup()">Cerrar</button>    
+      <div id="pp-button"></div>
+  </div>
   </main>
 
   <script src="script.js"></script>
+  <script>
+	 document.getElementById('btn-cerrar').style.display = 'none';
+      function mostrarPopup() {
+          // Mostrar el popup y overlay
+          document.getElementById('popup').style.display = 'block';
+          document.getElementById('overlay').style.display = 'block';
+          document.getElementById('btn-cerrar').style.display = 'block';
+
+          ejecutarCajitaPagos();
+      }
+
+      function cerrarPopup() {
+          document.getElementById('popup').style.display = 'none';
+          document.getElementById('overlay').style.display = 'none';
+      }
+
+      function ejecutarCajitaPagos() {
+          const clientTransactionID="ID-UNICO-X-TRANSACCION";
+          const ppb  = new PPaymentButtonBox({                            
+              //token obtenido desde la consola de developer
+              token: 'hlQhgo52xIS-3oCHsNZqaxPxapZnYy6txqwZ3DTo8SqH7y2yJ9ODlW0rqWtL-1shPhpuS2vBm3a2iujtfNowLaG6eOYan-l769ZYd4YEs2dNttAsLyiiaj-LmuRYaeaQbDGGgi1NKLabcY8KYiA_093eXCgkwyeQ9lpZ9rsJzrNORpAGvoaKlDrhoNEU5I8sp5nBA9RykLnQ91gIb0K-7ZA-eZ6m4ijj6uSxshqNmrgWN8hNb2A_8iuobxA2XWu4zekOlk44jj2LQbDTXAK8h1IsDDL8zk6FLNconDoPirHzo0zcPqLU90duaqbwh9wZH2y8QZb0r_ll0MX7Uj2w-r0ihqQ',                                    
+              amount: 315,
+              amountWithoutTax: 200, 
+              amountWithTax:100,
+              tax: 15,                                        
+              service: 0,
+              tip:0,
+              storeId:"b10d8497-9cea-45db-b1ab-e212aa6c1e07", 
+              reference:"Motivo de Pago",
+              currency: 'USD',
+              clientTransactionId: clientTransactionID,
+              backgroundColor: "#6610f2"
+          }).render('pp-button');
+      }
+</script>
 </body>
 </html>
