@@ -74,7 +74,14 @@
               reference:"Motivo de Pago",
               currency: 'USD',
               clientTransactionId: clientTransactionID,
-              backgroundColor: "#6610f2"
+              backgroundColor: "#6610f2",
+               onComplete: function (transactionResult) {
+                const id = transactionResult.transactionId;
+                const clientTx = transactionResult.clientTransactionId;
+
+                // 👇 Redirigir al HTML del backend con los parámetros
+                window.location.href = `/confirmacion?id=${id}&clientTransactionId=${clientTx}`;
+            }
           }).render('pp-button');
       }
 </script>
