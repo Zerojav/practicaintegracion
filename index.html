@@ -76,12 +76,13 @@
               clientTransactionId: clientTransactionID,
               backgroundColor: "#6610f2",
                onComplete: function (transactionResult) {
+                console.log("✅ Pago completado", transactionResult);
                 const id = transactionResult.transactionId;
                 const clientTx = transactionResult.clientTransactionId;
 
-                // 👇 Redirigir al HTML del backend con los parámetros
+                // redirigir
                 window.location.href = `/confirmacion?id=${id}&clientTransactionId=${clientTx}`;
-            }
+              }
           }).render('pp-button');
       }
 </script>
