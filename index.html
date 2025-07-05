@@ -60,16 +60,10 @@
       }
 
       function ejecutarCajitaPagos() {
-           const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-
-            const subtotalRounded = parseFloat(subtotal.toFixed(2));
+            const subtotalCents = cart.reduce((sum, item) => sum + Math.round(item.price * 100), 0);
             const taxRate = 0.12;
-            const tax = parseFloat((subtotalRounded * taxRate).toFixed(2));
-            const total = parseFloat((subtotalRounded + tax).toFixed(2));
-
-            const amountWithoutTaxCents = Math.round(subtotalRounded * 100);
-            const taxCents = Math.round(tax * 100);
-            const totalCents = Math.round(total * 100); // Esto asegura consistencia
+            const taxCents = Math.round(subtotalCents * taxRate);
+            const totalCents = subtotalCents + taxCents;
 
 
           const clientTransactionID = 'ID-' + Date.now() + '-' + Math.floor(Math.random() * 1000); // Generar un ID único para la transacción
@@ -77,7 +71,7 @@
               //token obtenido desde la consola de developer
               token: 'wrPUSQfjR-GCEFuaIWVGK4wvBycFljhVQTyO8q1i56c7GnoBXh6tosgP5cQxR0Xx5VA4pbb-xb12qVFnkTcR54MR3zx-u16Qf7WKf64We9j-SNXcsCGLICgwiI2bhfurKCtLL2p-XiL8Tx1lxXNou5Tool60cznwFLN57zFBTLgEz5a3nm7wvtakueGM1zqg9Ygs5HuJlmUIY51tfpVgf_gxmAyQvhwi4qfQ8o2XZkmGhlN8bdfM_rpVmjk006JdiehQphBPScuzRHZQYrrnBxfUbZyoaUFrZkicIhtryaDdntIEFuYc8rjHK0vbmZGh7ExJCyBW5EGQiv5QkDCTmhQVXis',                                    
               amount: totalCents,
-              amountWithoutTax: amountWithoutTaxCents, 
+              amountWithoutTax: subtotalCents, 
               tax: taxCents,                                        
               service: 0,
               tip:0,
