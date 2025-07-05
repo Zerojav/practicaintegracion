@@ -2,17 +2,17 @@ const products = [
   {
     name: "Camiseta Roja",
     price: 19.99,
-    image: "https://via.placeholder.com/200x150/ff4444/ffffff?text=Camiseta"
+    image: "https://swat-store.com/207-large_default/camisa-polo-color-roja.jpg"
   },
   {
     name: "Zapatos Negros",
     price: 49.99,
-    image: "https://via.placeholder.com/200x150/333333/ffffff?text=Zapatos"
+    image: "https://www.hakuhandmade.com/wp-content/uploads/2023/12/Foto-918-optimized.jpg"
   },
   {
     name: "Gorra Azul",
     price: 14.99,
-    image: "https://via.placeholder.com/200x150/008cba/ffffff?text=Gorra"
+    image: "https://neweraec.vtexassets.com/arquivos/ids/156733/10047531_1.jpg?v=638324710543770000"
   }
 ];
 
