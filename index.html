@@ -63,19 +63,25 @@
           const subtotalCents = cart.reduce((sum, item) => sum + Math.round(item.price * 100), 0);
           const taxRate = 0.12;
           const taxCents = Math.round(subtotalCents * taxRate);
-          const totalCents = subtotalCents + taxCents;
-          console.log({ subtotalCents, taxCents, totalCents });
+          const amountWithoutTax = subtotalCents;
+          const tax = taxCents;
+          const amountWithTax = 0; // Si no tienes items con IVA incluido, lo dejas 0
+          const service = 0;
+          const tip = 0;
+          const amount = amountWithoutTax + tax + amountWithTax + service + tip;
+
+    console.log({ amount, amountWithoutTax, amountWithTax, tax });
 
           const clientTransactionID = 'ID-' + Date.now() + '-' + Math.floor(Math.random() * 1000); // Generar un ID único para la transacción
           const ppb  = new PPaymentButtonBox({                            
               //token obtenido desde la consola de developer
               token: 'wrPUSQfjR-GCEFuaIWVGK4wvBycFljhVQTyO8q1i56c7GnoBXh6tosgP5cQxR0Xx5VA4pbb-xb12qVFnkTcR54MR3zx-u16Qf7WKf64We9j-SNXcsCGLICgwiI2bhfurKCtLL2p-XiL8Tx1lxXNou5Tool60cznwFLN57zFBTLgEz5a3nm7wvtakueGM1zqg9Ygs5HuJlmUIY51tfpVgf_gxmAyQvhwi4qfQ8o2XZkmGhlN8bdfM_rpVmjk006JdiehQphBPScuzRHZQYrrnBxfUbZyoaUFrZkicIhtryaDdntIEFuYc8rjHK0vbmZGh7ExJCyBW5EGQiv5QkDCTmhQVXis',                                    
-              amount: 315,
-              amountWithoutTax: 200,
-              amountWithTax: 100,
-              tax: 15,                                        
-              service: 0,
-              tip:0,
+              amount: amount,
+              amountWithoutTax: amountWithoutTax,
+              amountWithTax: amountWithTax,
+              tax: tax,                                        
+              service: service,
+              tip: tip,
               storeId:"b10d8497-9cea-45db-b1ab-e212aa6c1e07", 
               reference:"Motivo de Pago",
               currency: 'USD',
