@@ -64,6 +64,7 @@
           const taxRate = 0.12;
           const taxCents = Math.round(subtotalCents * taxRate);
           const totalCents = subtotalCents + taxCents;
+          console.log({ subtotalCents, taxCents, totalCents });
 
           const clientTransactionID = 'ID-' + Date.now() + '-' + Math.floor(Math.random() * 1000); // Generar un ID único para la transacción
           const ppb  = new PPaymentButtonBox({                            
