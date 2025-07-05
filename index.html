@@ -62,31 +62,32 @@
       function ejecutarCajitaPagos() {
 
           if (cart.length === 0) {
-          alert("El carrito está vacío.");
-          return;
+            alert("El carrito está vacío.");
+            return;
           }
+
           const subtotalCents = cart.reduce((sum, item) => sum + Math.round(item.price * 100), 0);
           const taxRate = 0.12;
-          const taxCents = Math.round(subtotalCents * taxRate);
-          const amountWithoutTax = subtotalCents;
+          const taxCents = Math.round(subtotalCents * (taxRate / (1 + taxRate))); // IVA ya incluido
+          const amountWithTax = subtotalCents; // Total ya incluye IVA
+          const amountWithoutTax = 0;
           const tax = taxCents;
-          const amountWithTax = 0; // Si no tienes items con IVA incluido, lo dejas 0
           const service = 0;
           const tip = 0;
-          const amount = amountWithoutTax + tax + amountWithTax + service + tip;
+          const amount = amountWithTax + amountWithoutTax + tax + service + tip;
 
-    console.log({ amount, amountWithoutTax, amountWithTax, tax });
+          console.log({ amount, amountWithTax, amountWithoutTax, tax });
 
           const clientTransactionID = 'ID-' + Date.now() + '-' + Math.floor(Math.random() * 1000); // Generar un ID único para la transacción
           const ppb  = new PPaymentButtonBox({                            
               //token obtenido desde la consola de developer
               token: 'wrPUSQfjR-GCEFuaIWVGK4wvBycFljhVQTyO8q1i56c7GnoBXh6tosgP5cQxR0Xx5VA4pbb-xb12qVFnkTcR54MR3zx-u16Qf7WKf64We9j-SNXcsCGLICgwiI2bhfurKCtLL2p-XiL8Tx1lxXNou5Tool60cznwFLN57zFBTLgEz5a3nm7wvtakueGM1zqg9Ygs5HuJlmUIY51tfpVgf_gxmAyQvhwi4qfQ8o2XZkmGhlN8bdfM_rpVmjk006JdiehQphBPScuzRHZQYrrnBxfUbZyoaUFrZkicIhtryaDdntIEFuYc8rjHK0vbmZGh7ExJCyBW5EGQiv5QkDCTmhQVXis',                                    
-              amount: amount,
-              amountWithoutTax: amountWithoutTax,
-              amountWithTax: amountWithTax,
-              tax: tax,                                        
-              service: service,
-              tip: tip,
+              amount,
+              amountWithoutTax,
+              amountWithTax,
+              tax,
+              service,
+              tip,
               storeId:"b10d8497-9cea-45db-b1ab-e212aa6c1e07", 
               reference:"Motivo de Pago",
               currency: 'USD',
