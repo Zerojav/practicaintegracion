@@ -60,11 +60,10 @@
       }
 
       function ejecutarCajitaPagos() {
-            const subtotalCents = cart.reduce((sum, item) => sum + Math.round(item.price * 100), 0);
-            const taxRate = 0.12;
-            const taxCents = Math.round(subtotalCents * taxRate);
-            const totalCents = subtotalCents + taxCents;
-
+          const subtotalCents = cart.reduce((sum, item) => sum + Math.round(item.price * 100), 0);
+          const taxRate = 0.12;
+          const taxCents = Math.round(subtotalCents * taxRate);
+          const totalCents = subtotalCents + taxCents;
 
           const clientTransactionID = 'ID-' + Date.now() + '-' + Math.floor(Math.random() * 1000); // Generar un ID único para la transacción
           const ppb  = new PPaymentButtonBox({                            
