@@ -63,3 +63,20 @@ header {
   margin: 1rem 2rem;
   border-radius: 8px;
 }
+
+.btn-pagar {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+.btn-pagar:hover {
+  background-color: #218838;
+}
