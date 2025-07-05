@@ -60,7 +60,9 @@
       }
 
       function ejecutarCajitaPagos() {
-          const clientTransactionID = 'ID-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+          const total = cart.reduce((sum, item) => sum + item.price, 0);
+          const totalRedondeado = Math.round(total * 100); // Payphone usa centavos, ej: $3.15 → 315
+          const clientTransactionID = 'ID-' + Date.now() + '-' + Math.floor(Math.random() * 1000); // Generar un ID único para la transacción
           const ppb  = new PPaymentButtonBox({                            
               //token obtenido desde la consola de developer
               token: 'wrPUSQfjR-GCEFuaIWVGK4wvBycFljhVQTyO8q1i56c7GnoBXh6tosgP5cQxR0Xx5VA4pbb-xb12qVFnkTcR54MR3zx-u16Qf7WKf64We9j-SNXcsCGLICgwiI2bhfurKCtLL2p-XiL8Tx1lxXNou5Tool60cznwFLN57zFBTLgEz5a3nm7wvtakueGM1zqg9Ygs5HuJlmUIY51tfpVgf_gxmAyQvhwi4qfQ8o2XZkmGhlN8bdfM_rpVmjk006JdiehQphBPScuzRHZQYrrnBxfUbZyoaUFrZkicIhtryaDdntIEFuYc8rjHK0vbmZGh7ExJCyBW5EGQiv5QkDCTmhQVXis',                                    
